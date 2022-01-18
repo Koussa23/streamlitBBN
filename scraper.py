@@ -63,7 +63,7 @@ st.set_page_config(
  )
 
 st.write("""
-    # BBN Internet Consumption
+    # Internet Consumption
 """)
 
 st.metric('Date: ', str(date.today().strftime("%d/%m/%Y")))
