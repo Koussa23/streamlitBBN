@@ -13,7 +13,7 @@ start_url = 'http://www.bcd-bbn.com/controlers/authenticate.php'
 post_params = {'username': 'marwanko', 'password': 'Marwanek1959'}
 
 response = requests.post(start_url, data=post_params)
-soup = BeautifulSoup(response.text, 'lxml')
+soup = BeautifulSoup(response.text, 'html.parser')
 
 # Scraping
 table = soup.find('table')
