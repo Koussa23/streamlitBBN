@@ -43,8 +43,8 @@ total_consumption = mydata.sum()['TotalMB']
 remaining = (data_cap - total_consumption)
 total_consumption_pct = (total_consumption / data_cap)
 remaining_pct = 100 - (total_consumption_pct * 100)
-downloads = mydata.sum()['DownloadMB'] / 1000
-uploads = mydata.sum()['UploadMB'] / 1000
+downloads = mydata.sum()['DownloadMB']
+uploads = mydata.sum()['UploadMB']
 dl_pct = (downloads / data_cap) * 100
 ul_pct = (uploads / data_cap) * 100
 
