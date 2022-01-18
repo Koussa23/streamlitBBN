@@ -39,8 +39,8 @@ mydata = mydata.round(2)
 mydata = mydata[['DownloadMB', 'UploadMB', 'TotalMB']]
 
 data_cap = 10**6
-total_consumption = mydata.sum()['TotalMB'] / 1000
-remaining = (data_cap - total_consumption) / 1000
+total_consumption = mydata.sum()['TotalMB']
+remaining = (data_cap - total_consumption)
 total_consumption_pct = (total_consumption / data_cap)
 remaining_pct = 100 - (total_consumption_pct * 100)
 downloads = mydata.sum()['DownloadMB'] / 1000
