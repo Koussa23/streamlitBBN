@@ -39,12 +39,12 @@ mydata = mydata.round(2)
 mydata = mydata[['DownloadMB', 'UploadMB', 'TotalMB']]
 
 data_cap = 10**6
-total_consumption = mydata.sum()['TotalMB']
-remaining = (data_cap - total_consumption)
+total_consumption = mydata.sum()['TotalMB'] / 1000
+remaining = (data_cap - total_consumption) / 1000
 total_consumption_pct = (total_consumption / data_cap)
 remaining_pct = 100 - (total_consumption_pct * 100)
-downloads = mydata.sum()['DownloadMB']
-uploads = mydata.sum()['UploadMB']
+downloads = mydata.sum()['DownloadMB'] / 1000
+uploads = mydata.sum()['UploadMB'] / 1000
 dl_pct = (downloads / data_cap) * 100
 ul_pct = (uploads / data_cap) * 100
 
@@ -75,10 +75,10 @@ col3.metric('Total Usage %', total_consumption_pct2)
 col4.metric('Total Remaining %', remaining_pct2)
 
 col5, col6, col7, col8 = st.columns(4)
-col5.metric('Downloads', (f'{round(downloads, 2):,}' + ' MB'))
-col6.metric('Uploads', f'{uploads:,}' + ' MB')
-col7.metric('Total Usage', f'{total_consumption:,}' + ' MB')
-col8.metric('Remaining', f'{remaining:,}' + ' MB')
+col5.metric('Downloads', (f'{round(downloads, 2):,}' + ' GB'))
+col6.metric('Uploads', f'{uploads:,}' + ' GB')
+col7.metric('Total Usage', f'{total_consumption:,}' + ' GB')
+col8.metric('Remaining', f'{remaining:,}' + ' GB')
 
 st.table(mydata)
 
