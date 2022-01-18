@@ -75,10 +75,10 @@ col3.metric('Total Usage %', total_consumption_pct2)
 col4.metric('Total Remaining %', remaining_pct2)
 
 col5, col6, col7, col8 = st.columns(4)
-col5.metric('Downloads', (f'{round(downloads, 2):,}' + ' GB'))
-col6.metric('Uploads', f'{uploads:,}' + ' GB')
-col7.metric('Total Usage', f'{total_consumption:,}' + ' GB')
-col8.metric('Remaining', f'{remaining:,}' + ' GB')
+col5.metric('Downloads', (f'{round((downloads/1000), 2):,}' + ' GB'))
+col6.metric('Uploads', f'{(uploads/1000):,}' + ' GB')
+col7.metric('Total Usage', f'{(total_consumption/1000):,}' + ' GB')
+col8.metric('Remaining', f'{(remaining/1000):,}' + ' GB')
 
 st.table(mydata)
 
