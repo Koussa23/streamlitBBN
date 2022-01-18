@@ -63,7 +63,7 @@ st.set_page_config(
  )
 
 st.write("""
-    # Hi Bouwss and Abul Ror 94
+    # Internet Consumption
 """)
 
 st.metric('Date: ', str(date.today().strftime("%d/%m/%Y")))
