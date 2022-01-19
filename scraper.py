@@ -62,9 +62,6 @@ st.set_page_config(
      initial_sidebar_state="expanded"
  )
 
-st.write("""
-    # Internet Usage
-""")
 
 st.metric('Date: ', str(date.today().strftime("%d/%m/%Y")))
 
