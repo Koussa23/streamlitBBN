@@ -6,9 +6,11 @@ import requests
 import streamlit as st
 from bs4 import BeautifulSoup
 from datetime import date
+import matplotlib
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+matplotlib.style.use('ggplot')
 
 # Init
 start_url = 'http://www.bcd-bbn.com/controlers/authenticate.php'
@@ -85,7 +87,18 @@ st.progress(total_consumption_pct)
 
 chart_data = mydata[:-1]
 
-st.bar_chart(chart_data, height=500)
+# st.bar_chart(chart_data, height=500)
 
+# Plotting
+fig, ax = plt.subplots(figsize=(20,7))
 
-fig = plt.figure(figsize=(40,20))
+ax.bar(chart_data.index, chart_data.DownloadMB, label='Downloads')
+ax.bar(chart_data.index, chart_data.UploadMB, label='Uploads')
+ax.plot(chart_data.index, chart_data.TotalMB, label='Total', c='black')
+
+ax.legend()
+
+ax.set_ylabel('Usage in MBs')
+ax.set_xlabel('Date')
+
+st.pyplot(fig)
