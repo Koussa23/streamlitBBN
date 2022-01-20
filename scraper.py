@@ -87,18 +87,23 @@ st.progress(total_consumption_pct)
 
 chart_data = mydata[:-1]
 
-# st.bar_chart(chart_data, height=500)
+chartData = pd.DataFrame(columns=['Downloads', 'Uploads'])
+chartData['Downloads'] = mydata.DownloadMB[:-1]
+chartData['Uploads'] = mydata.UploadMB[:-1]
+chartData.set_index(mydata.index[:-1], inplace=True)
+
+st.bar_chart(chartData, height=500)
 
 # Plotting
-fig, ax = plt.subplots(figsize=(20,7))
+# fig, ax = plt.subplots(figsize=(20,7))
 
-ax.bar(chart_data.index, chart_data.DownloadMB, label='Downloads')
-ax.bar(chart_data.index, chart_data.UploadMB, label='Uploads')
-ax.plot(chart_data.index, chart_data.TotalMB, label='Total', c='black')
+# ax.bar(chart_data.index, chart_data.DownloadMB, label='Downloads')
+# ax.bar(chart_data.index, chart_data.UploadMB, label='Uploads')
+# ax.plot(chart_data.index, chart_data.TotalMB, label='Total', c='black')
 
-ax.legend()
+# ax.legend()
 
-ax.set_ylabel('Usage in MBs')
-ax.set_xlabel('Date')
+# ax.set_ylabel('Usage in MBs')
+# ax.set_xlabel('Date')
 
-st.pyplot(fig)
+# st.pyplot(fig)
