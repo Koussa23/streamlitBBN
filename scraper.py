@@ -87,7 +87,7 @@ st.progress(total_consumption_pct)
 
 chart_data = mydata[:-1]
 
-chartData = pd.DataFrame(columns=['Downloads', 'Uploads'])
+chartData = pd.DataFrame(columns=['Uploads', 'Downloads'])
 chartData['Downloads'] = mydata.DownloadMB[:-1]
 chartData['Uploads'] = mydata.UploadMB[:-1]
 chartData.set_index(mydata.index[:-1], inplace=True)
