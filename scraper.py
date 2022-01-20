@@ -6,6 +6,8 @@ import requests
 import streamlit as st
 from bs4 import BeautifulSoup
 from datetime import date
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 
 # Init
@@ -84,3 +86,6 @@ st.progress(total_consumption_pct)
 chart_data = mydata[:-1]
 
 st.bar_chart(chart_data, height=500)
+
+
+fig = plt.figure(figsize=(40,20))
