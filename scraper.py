@@ -71,19 +71,20 @@ st.metric('Date: ', str(date.today().strftime("%d/%m/%Y")))
 
 col1, col2, col3, col4 = st.columns(4)
 col1.metric('Total Downloads %', dl_pct2)
+col1.metric('Downloads', (f'{round((downloads/1000), 2):,}' + ' GB'))
 col2.metric('Total Uploads %', ul_pct2)
+col2.metric('Uploads', f'{round((uploads/1000), 2):,}' + ' GB')
 col3.metric('Total Usage %', total_consumption_pct2)
+col3.metric('Total Usage', f'{round((total_consumption/1000), 2):,}' + ' GB')
 col4.metric('Total Remaining %', remaining_pct2)
+col4.metric('Remaining', f'{round((remaining/1000), 2):,}' + ' GB')
 
-col5, col6, col7, col8 = st.columns(4)
-col5.metric('Downloads', (f'{round((downloads/1000), 2):,}' + ' GB'))
-col6.metric('Uploads', f'{round((uploads/1000), 2):,}' + ' GB')
-col7.metric('Total Usage', f'{round((total_consumption/1000), 2):,}' + ' GB')
-col8.metric('Remaining', f'{round((remaining/1000), 2):,}' + ' GB')
 
-st.table(mydata)
+colA, colB, colC = st.columns([1, 7, 1])
+with colB:
+    st.table(mydata)
+    st.progress(total_consumption_pct)
 
-st.progress(total_consumption_pct)
 
 chart_data = mydata[:-1]
 
@@ -92,7 +93,12 @@ chartData['Downloads'] = mydata.DownloadMB[:-1]
 chartData['Uploads'] = mydata.UploadMB[:-1]
 chartData.set_index(mydata.index[:-1], inplace=True)
 
-st.bar_chart(chartData, height=500)
+
+colD, colE, colF = st.columns([1, 7, 1])
+with colE:
+    showGraph = st.checkbox('Show Graph', value=False)
+    if showGraph:
+        st.bar_chart(chartData, height=700)
 
 # Plotting
 # fig, ax = plt.subplots(figsize=(20,7))
