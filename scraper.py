@@ -66,10 +66,11 @@ st.set_page_config(
      initial_sidebar_state="expanded"
  )
 
+empty, datefield, empty2, empty3, empty4 = st.columns(5)
+with datefield:
+    st.metric('Date: ', str(date.today().strftime("%d/%m/%Y")))
 
-st.metric('Date: ', str(date.today().strftime("%d/%m/%Y")))
-
-col1, col2, col3, col4 = st.columns(4)
+blank, col1, col2, col3, col4 = st.columns(5)
 col1.metric('Total Downloads %', dl_pct2)
 col1.metric('Downloads', (f'{round((downloads/1000), 2):,}' + ' GB'))
 col2.metric('Total Uploads %', ul_pct2)
@@ -82,8 +83,22 @@ col4.metric('Remaining', f'{round((remaining/1000), 2):,}' + ' GB')
 
 colA, colB, colC = st.columns([1, 7, 1])
 with colB:
-    st.table(mydata)
-    st.progress(total_consumption_pct)
+    showTable = st.checkbox('Show Table', value=False)
+    if showTable:
+        st.table(mydata)
+        if total_consumption_pct <= 1:
+            st.progress(total_consumption_pct)
+        else:
+            st.markdown(
+            """
+            <style>
+                .stProgress > div > div > div > div {
+                    background-color: red;
+                }
+            </style>""",
+        unsafe_allow_html=True,
+    )
+            st.progress(total_consumption_pct - 1)
 
 
 chart_data = mydata[:-1]
