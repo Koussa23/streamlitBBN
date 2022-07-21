@@ -42,7 +42,7 @@ mydata = mydata.apply(pd.to_numeric)
 mydata = mydata.round(2)
 mydata = mydata[['DownloadMB', 'UploadMB', 'TotalMB']]
 
-data_cap = 10**6
+data_cap = 12.5**6
 total_consumption = mydata.sum()['TotalMB']
 remaining = (data_cap - total_consumption)
 total_consumption_pct = (total_consumption / data_cap)
@@ -83,7 +83,7 @@ col4.metric('Remaining', f'{round((remaining/1000), 2):,}' + ' GB')
 
 colA, colB, colC = st.columns([1, 7, 1])
 with colB:
-    showTable = st.checkbox('Show Table', value=False)
+    showTable = st.checkbox('Show Table', value=True)
     if showTable:
         st.table(mydata)
         if total_consumption_pct <= 1:
@@ -111,7 +111,7 @@ chartData.set_index(mydata.index[:-1], inplace=True)
 
 colD, colE, colF = st.columns([1, 7, 1])
 with colE:
-    showGraph = st.checkbox('Show Graph', value=False)
+    showGraph = st.checkbox('Show Graph', value=True)
     if showGraph:
         st.bar_chart(chartData, height=700)
 
