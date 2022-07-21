@@ -42,7 +42,7 @@ mydata = mydata.apply(pd.to_numeric)
 mydata = mydata.round(2)
 mydata = mydata[['DownloadMB', 'UploadMB', 'TotalMB']]
 
-data_cap = 12.5**6
+data_cap = (10**6) * 1.25
 total_consumption = mydata.sum()['TotalMB']
 remaining = (data_cap - total_consumption)
 total_consumption_pct = (total_consumption / data_cap)
